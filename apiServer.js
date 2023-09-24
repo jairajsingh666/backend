@@ -11,7 +11,7 @@ app.use(bodyParser.json());
 app.post("/api/upload", (req, res) => {
   const uploadedData = req.body;
   fs.appendFileSync('data.json', JSON.stringify(uploadedData));
-  console.log("yo", uploadedData)
+  console.log("Data has been added", uploadedData)
   
   res.status(200).json({ message: "Data received and processed successfully." });
 });
@@ -27,7 +27,7 @@ app.get("/api/cloud-data", async (req, res) => {
 });
 
 app.delete("/api/delete-cloud-data", (req, res) => {
-
+  fs.writeFileSync('data.json', '')
   console.log("Cloud data has been deleted.");
   res.status(200).send("Cloud data has been deleted.");
 });
